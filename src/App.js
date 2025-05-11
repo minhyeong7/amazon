@@ -1,85 +1,82 @@
-import {useState, useEffect, useRef} from 'react'
-import Accordion from './components/Accordion'
-import Gallery from './components/Gallery'
+import { useState, useEffect, useRef } from "react";
+import Accordion from "./components/Accordion";
+import Gallery from "./components/Gallery";
 
-// 제품 정보 - 이런정보들이 서버에서 정보를 보내주면 프론트엔드가 뷰를만듬
-const PRODUCT ={
+// 제품 정보
+const PRODUCT = {
   productId: "g0",
-  name:"Galaxy S24 512GB Amber Yellow",
+  name: "Galaxy S24 512GB Amber Yellow",
   manufacturer: "SAMSUNG",
   price: 799,
-  catalog:"https://tvvmvn.github.io/blackboard/images/catalog.png"
+  catalog: "https://haninpost.com/wp-content/uploads/2025/04/%EC%95%84%EC%9D%B4%ED%8F%B016-%EC%8B%9C%EB%A6%AC%EC%A6%88.jpg"
 }
 
-export default function App(){
-  // 장바구니 버튼 비활성화 관리 // 처음 added는 null 
-  const [added, setAdded] = useState(localStorage.getItem("cart")); 
-  // 탑 버튼 활성화 관리 
-  const [active, setActive]= useState(false);
+export default function App() {
+  // 장바구니 버튼 비활성화 관리
+  const [added, setAdded] = useState(localStorage.getItem("cart"));  
+  // 탑 버튼 활성화 관리
+  const [active, setActive] = useState(false);
 
-  // 장바구니 추가처리
-  function addToCart(){
+  // 장바구니 추가 처리
+  function addToCart() {
     alert("추가되었습니다");
-    
     // 버튼 비활성화
     setAdded(PRODUCT.productId);
     // 로컬스토리지 동기화
-    localStorage.setItem("cart",PRODUCT.productId);
+    localStorage.setItem("cart", PRODUCT.productId);
   };
 
   // 문서 탑으로 이동 처리
   function toTop() {
-    document.documentElement.scrollTop=0;
+    document.documentElement.scrollTop = 0;
   };
 
-  useEffect (() => {
+  useEffect(() => {
     // 문서 타이틀 업데이트
-    document.title=`Amazon - ${PRODUCT.name}`;
+    document.title = `Amazon - ${PRODUCT.name}`;
 
     // 스크롤 이벤트 처리
-    document.addEventListener("scroll", () =>{
-      // 문서탑과 뷰포트 탑사이의 거리
-      const scrollTop = document.documentElement.scrollTop; 
-
-      if(scrollTop > 1000){
+    document.addEventListener("scroll", () => {
+      const scrollTop = document.documentElement.scrollTop;
+      
+      if (scrollTop > 1000) {
         setActive(true);
-      }else{
+      } else {
         setActive(false);
       }
     })
   }, []);
 
-
   return (
-    <div id='app'>
+    <div id="app">
       {/* Header */}
-      <header className='border-b fixed top-0 left-0 s w-full bg-white'>
-        <div className='flex justify-center items-center h-12'>
-        <img 
-        className="h-6" 
-        src="https://tvvmvn.github.io/blackboard/images/logo.png" 
-        alt="logo"
-        />
+      <header className="border-b fixed top-0 left-0 z-10 w-full bg-white">
+        <div className="flex justify-center items-center h-12">
+          <img 
+            className="h-12"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS55ibX5WdtVbqWyxv_zBeILc-CVctRy9jpUg&s"
+            alt="logo" 
+          />
         </div>
       </header>
 
-      <main className='mt-16 max-w-md mx-auto px-4 pb-8'>
-        <small className='text-xs text-blue-400 font-semibold'>
+      <main className="mt-16 max-w-md mx-auto px-4 pb-8">
+        <small className="text-xs text-blue-400 font-semibold">
           {PRODUCT.manufacturer}
         </small>
-        <h3 className='mb-4 text-gray-800'>{PRODUCT.name}</h3>
+        <h3 className="mb-4 text-gray-800">{PRODUCT.name}</h3>
 
         {/* 제품 사진 */}
         <Gallery />
 
-        <div className='text-4xl font-semibold my-8'>
+        <div className="text-4xl font-semibold my-8">
           ${PRODUCT.price}
         </div>
 
         {/* 장바구니 버튼 */}
-        <button
-          type='button'
-          className='w-full p-3 bg-yellow-400 font-semibold rounded-full disabled:opacity-50'
+        <button 
+          type="button" 
+          className="w-full p-3 bg-yellow-400 font-semibold rounded-full disabled:opacity-50"
           onClick={addToCart}
           disabled={added}
         >
@@ -87,17 +84,16 @@ export default function App(){
         </button>
 
         {/* 제품 카탈로그 */}
-        <h3 className='my-4 font-semibold'>
+        <h3 className="my-4 font-semibold">
           From the manufacturer
         </h3>
-        <img
-          src={PRODUCT.catalog}
-          alt={PRODUCT.catalog}
+        <img 
+          src={PRODUCT.catalog} 
+          alt={PRODUCT.catalog} 
         />
 
         {/* 아코디언 */}
         <Accordion />
-
 
         {/* 탑 버튼 */}
         <svg 
@@ -112,5 +108,4 @@ export default function App(){
       </main>
     </div>
   )
-
-};
+}

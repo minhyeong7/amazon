@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const PHOTOS = [
-  "https://tvvmvn.github.io/blackboard/images/product-1.jpeg",
-  "https://tvvmvn.github.io/blackboard/images/product-2.jpeg",
-  "https://tvvmvn.github.io/blackboard/images/product-3.jpeg",
+   "https://m.lguplus.com/static/pc-contents/images/prdv/20240910-100321-417-AAod0Y5I.png",
+   "https://image.shop.kt.com/upload/product/WL00067977/1722385667246.png",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTBRc6KV-eBSQC88XSrPebqxWyOtPJqsJ0w&s",
 ]
 
 export default function Gallery() {
