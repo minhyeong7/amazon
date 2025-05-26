@@ -39,7 +39,7 @@ export default function App() {
     document.addEventListener("scroll", () => {
       const scrollTop = document.documentElement.scrollTop;
       
-      if (scrollTop > 1000) {
+      if (scrollTop > 100) {
         setActive(true);
       } else {
         setActive(false);
